@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'TP1',
     'Gestion',
+    'Boutique',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

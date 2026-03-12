@@ -1,0 +1,8 @@
+{%extends 'Boutique/base.html'%}
+{%block content%}
+<h2>historique des commandes</h2>
+{%for com in commandes%}
+<p>commande n{{com.ncom}} - Client : {{com.ndi}} - Date : {{com.datecom|date:"d F Y"}}</p>
+{% empty %} <p>Aucune commande</p>
+{%endfor%}
+{%endblock%}
