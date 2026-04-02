@@ -2,7 +2,16 @@
 {%block content%}
 <h2>historique des commandes</h2>
 {%for com in commandes%}
-<p>commande n{{com.ncom}} - Client : {{com.ndi}} - Date : {{com.datecom|date:"d F Y"}}</p>
-{% empty %} <p>Aucune commande</p>
+<div style="border:1px solid #333;margin-bottom:20px; padding:10px;">
+    <h3>Commande n{{com.ncom}}-Client:{{com.client.nom}}</h3>
+    <p>Aticles dans cette commande :</p>
+    <ul>
+        {%for ligne in com.lignes.all%}
+        <li>{{ligne.produit.libelle}}(Qte:{{ligne.com}})</li>
+        {%empty%}
+        <li>Aucun article enregistre</li>
+        {%endfor%}
+    </ul>
+</div>
 {%endfor%}
 {%endblock%}

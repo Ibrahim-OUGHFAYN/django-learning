@@ -1,0 +1,24 @@
+{%extends 'Boutique/base.html'%}
+{%block content%}
+<h2>Liste Simple des details</h2>
+<table border="1">
+   <thead>
+    <tr>
+        <th>N commande</th>
+        <th>ref produit</th>
+        <th>Quantite</th>
+        <th>client</th>
+    </tr>
+   </thead>
+   <tbody>
+    {%for d in details%}
+    <tr>
+        <td>commande n{{d.commande.ncom}} du {{d.commande.datecom|date:"d/m/Y"}}</td>
+        <td>{{d.produit.libelle}}</td>
+        <td style="text-align: center;">{{d.qcom}}</td>
+        <td>Client de : {{d.commande.client.localite}}</td>
+    </tr>
+    {%endfor%}
+   </tbody>
+</table>
+{%endblock%}
