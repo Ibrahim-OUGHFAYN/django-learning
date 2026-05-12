@@ -1,6 +1,11 @@
 {%extends 'Boutique/base.html'%}
 {%block content%}
 <h2>Liste Simple des details</h2>
+
+{% if perms.Boutique.add_detail %}
+<a href="{% url 'ajouter_detail' %}" style="background:green;color:white;padding:10px;text-decoration:none;">+ Ajouter Detail</a><br><br>
+{% endif %}
+
 <table border="1">
    <thead>
     <tr>
@@ -8,6 +13,7 @@
         <th>ref produit</th>
         <th>Quantite</th>
         <th>client</th>
+        <th>Actions</th>
     </tr>
    </thead>
    <tbody>
@@ -17,6 +23,17 @@
         <td>{{d.produit.libelle}}</td>
         <td style="text-align: center;">{{d.qcom}}</td>
         <td>Client de : {{d.commande.client.localite}}</td>
+        <td>
+            {%if perms.Boutique.change_detail%}
+           <a href="{% url 'modifier_detail' d.commande.ncom d.produit.npro %}">modifier</a>
+           {%endif%}
+           {%if perms.Boutique.delete_client%}
+           <a href="{% url 'supprimer_detail' d.commande.ncom d.produit.npro %}">supprimer</a>
+           {%endif%}
+           <span>PRO : </span>
+           <a href="{% url 'update' 2 d.commande_id d.produit_id %}">modifier</a>
+           <a href="{% url 'delete' 2 d.commande_id d.produit_id  %}" style="color:red;">supprimer</a>
+        </td>
     </tr>
     {%endfor%}
    </tbody>

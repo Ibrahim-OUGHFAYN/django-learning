@@ -4,7 +4,7 @@ from .models import Client,Produit,Commande,Detail
 
 admin.site.register(Client)
 admin.site.register(Produit)
-# admin.site.register(Commande)
+admin.site.register(Commande)
 admin.site.register(Detail)
 
 

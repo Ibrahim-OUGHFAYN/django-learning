@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'TP1',
     'Gestion',
     'Boutique',
+    
 ]
 
 

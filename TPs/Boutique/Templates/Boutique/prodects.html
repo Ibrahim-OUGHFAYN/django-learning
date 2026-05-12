@@ -1,10 +1,25 @@
 {%extends 'Boutique/base.html'%}
 {%block content%}
 <h2>Stock produits</h2>
+
+{% if perms.Boutique.add_produit%}
+<a href="{%url 'ajouter_produit' %}" style="background:green;color:white;padding:10px;text-decoration:none;">+ Ajouter Produit</a><br>
+{%endif%}
+
 <ul>
     {%for p in produits%}
     <li>
         {{p.libelle|capfirst}}{ref:{{p.npre}}}-<strong>Stock:{{p.qstock}}</strong>
+
+        {%if perms.Boutique.change_produit%}
+        <a href="{% url 'modifier_produit' p.npro %}">modifier</a>
+        {%endif%}
+        {%if perms.Boutique.delete_produit%}
+        <a href="{% url 'supprimer_produit' p.npro %}" style="color:red;">supprimer  </a>
+        {%endif%}
+       <span>PRO : </span>
+        <a href="{% url 'update' 3 p.npro 0 %}">modifier</a>
+        <a href="{% url 'delete' 3 p.npro 0 %}" style="color:red;">supprimer</a> 
         {% if p.qstock < 100 %}<span style="color:red;">ALERTE</span>{%endif%}
     </li>
     {%endfor%}

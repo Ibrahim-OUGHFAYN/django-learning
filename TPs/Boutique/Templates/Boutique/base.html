@@ -13,7 +13,18 @@
         <a href="{% url 'clients' %}">Clients</a>
         <a href="{% url 'products' %}">produits</a>
         <a href="{% url 'commandes' %}">commandes</a>
-        <a href="{%url 'details'%}">Details</a>
+        <a href="{% url 'details'%}">Details</a>
+        {% if request.user.is_authenticated %}
+           <span style='color:#aaffaa;'><a href="{% url 'profile' %}">{{request.user.username}}</a> |</span>
+           <form action="{% url 'deconnexion' %}" method="POST" style="display:inline;">
+               {% csrf_token %}
+               <button type="submit" style="background:none;border:none;color:#ff3333;cursor:pointer;">Deconnexion</button>
+           </form>
+        {% else %}
+           <a href="{% url 'connexion'%}">connexion | </a>
+           <a href="{% url 'register'%}">insription</a>
+        {%endif%}
+        <a href="{% url 'tableau_bord'%}">dashboard</a>
     </nav>
     <div class="content">
         {% block content %}{% endblock %}
